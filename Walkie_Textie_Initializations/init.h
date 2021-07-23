@@ -1,5 +1,5 @@
 /*
- * screen.h
+ * init.h
  *
  *  Created on: Jul 1, 2021
  *      Author: Jenny
@@ -10,5 +10,7 @@
 
 void screen_init (void);
 void keypad_init (void);
+void button_init (void);
+
 
 #endif /* INIT_H_ */
