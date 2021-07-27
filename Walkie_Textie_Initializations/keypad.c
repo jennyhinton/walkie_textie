@@ -10,228 +10,239 @@
      * Definitely need to credit https://forum.arduino.cc/t/interfacing-blackberry-q10-keypad-to-arduino-and-the-oled-typewriter/342989
      *
                COL1   COL2   COL3   COL4  COL5
-               GP8    GP9    GP10   GP11  GP12
-    ROW1 GPIO1  Q      E       R      U     O
-    ROW2 GPIO2  W      S       G      H     L
-    ROW3 GPIO3  sym    D       T      Y     I
-    ROW4 GPIO4  A      P      sh2    ret   bck
-    ROW5 GPIO5  alt    Z       V      B     $
-    ROW6 GPIO6  spc    X       C      N     M
-    ROW7 GPIO7  mike  sh1      F      J     K
+               GP29   GP30    GP10   GP11  GP12
+    ROW1 GPIO13  Q      E       R      U     O
+    ROW2 GPIO14  W      S       G      H     L
+    ROW3 GPIO15  sym    D       T      Y     I
+    ROW4 GPIO25  A      P      sh2    ret   bck
+    ROW5 GPIO26  alt    Z       V      B     $
+    ROW6 GPIO27  spc    X       C      N     M
+    ROW7 GPIO28  mike  sh1      F      J     K
 
      */
 
-char key_scan(void)
+//return the first pressed key
+const char* key_scan(void)
 {
     bool sym = 0;       //track character vs symbol
     char chr = 0;       //current character
     char symb = 0;      //current symbol
     bool shift = 0;     //shift key
 
-    bool alt = 0;           //idk what to do with these really
+    bool alt = 0;           //idk what this is for
     bool backspace = 0;
-    bool shl = 0;
-    bool shr = 0;
+    bool shl = 0;           //1/2 capslock
+    bool shr = 0;           //1/2 capslock
     bool ret = 0;
 
-    GpioCtrlRegs.GPADIR.bit.GPIO8 = 1;   // GPIO8 = output
-    GpioDataRegs.GPADATPUD.bit.GPIO8 = 1;   // set col 1 low
-    if (GpioDataRegs.GPADAT.bit.GPIO1 == 0)         //row 1
+    GpioCtrlRegs.GPADIR.bit.GPIO29 = 1;   // GPIO29 = output
+    GpioDataRegs.GPADATPUD.bit.GPIO29 = 1;   // set col 1 low
+    if (GpioDataRegs.GPADAT.bit.GPIO13 == 0)         //row 1
     {
-        chr = 'q';
-        symb = '#';
+        chr = "q";
+        symb = "#";
     }
-    if (GpioDataRegs.GPADAT.bit.GPIO2 == 0)         //row 2
+    if (GpioDataRegs.GPADAT.bit.GPIO14 == 0)         //row 2
     {
-        chr = 'w';
-        symb = '1';
+        chr = "w";
+        symb = "1";
     }
-    if (GpioDataRegs.GPADAT.bit.GPIO3 == 0)         //row 3
+    if (GpioDataRegs.GPADAT.bit.GPIO15 == 0)         //row 3
     {
         sym = 1;
     }
-    if (GpioDataRegs.GPADAT.bit.GPIO4 == 0)         //row 4
+    if (GpioDataRegs.GPADAT.bit.GPIO25 == 0)         //row 4
     {
-        chr = 'a';
-        symb = '*';
+        chr = "a";
+        symb = "*";
     }
-    if (GpioDataRegs.GPADAT.bit.GPIO5 == 0)         //row 5
+    if (GpioDataRegs.GPADAT.bit.GPIO26 == 0)         //row 5
     {
-        alt = 1;
+        //alt = 1;
     }
-    if (GpioDataRegs.GPADAT.bit.GPIO6 == 0)         //row 6
+    if (GpioDataRegs.GPADAT.bit.GPIO27 == 0)         //row 6
     {
-        chr = ' ';
-        symb = ' ';
+        chr = " ";
+        symb = " ";
     }
-    if (GpioDataRegs.GPADAT.bit.GPIO7 == 0)         //row 7
+    if (GpioDataRegs.GPADAT.bit.GPIO28 == 0)         //row 7
     {
-        chr = '~';
-        symb = '0';
+        chr = "";
+        symb = "0";
     }
-    GpioCtrlRegs.GPADIR.bit.GPIO8 = 0;   // GPIO8 = input
-    GpioCtrlRegs.GPADIR.bit.GPIO9 = 1;   // GPIO9 = output
-    GpioDataRegs.GPADATPUD.bit.GPIO9 = 1;   // set col 2 low
+    GpioCtrlRegs.GPADIR.bit.GPIO29 = 0;   // GPIO29 = input
+    GpioCtrlRegs.GPADIR.bit.GPIO30 = 1;   // GPIO30 = output
+    GpioDataRegs.GPADATPUD.bit.GPIO30 = 1;   // set col 2 low
 
-    if (GpioDataRegs.GPADAT.bit.GPIO1 == 0)         //row 1
+    if (GpioDataRegs.GPADAT.bit.GPIO13 == 0)         //row 1
    {
-       chr = 'e';
-       symb = '2';
+       chr = "e";
+       symb = "2";
    }
-   if (GpioDataRegs.GPADAT.bit.GPIO2 == 0)         //row 2
+   if (GpioDataRegs.GPADAT.bit.GPIO14 == 0)         //row 2
    {
-       chr = 's';
-       symb = '4';
+       chr = "s";
+       symb = "4";
    }
-   if (GpioDataRegs.GPADAT.bit.GPIO3 == 0)         //row 3
+   if (GpioDataRegs.GPADAT.bit.GPIO15 == 0)         //row 3
    {
-       chr = 'd';
-       symb = '5';
+       chr = "d";
+       symb = "5";
    }
-   if (GpioDataRegs.GPADAT.bit.GPIO4 == 0)         //row 4
+   if (GpioDataRegs.GPADAT.bit.GPIO25 == 0)         //row 4
    {
-       chr = 'p';
-       symb = '@';
+       chr = "p";
+       symb = "@";
    }
-   if (GpioDataRegs.GPADAT.bit.GPIO5 == 0)         //row 5
+   if (GpioDataRegs.GPADAT.bit.GPIO26 == 0)         //row 5
    {
-       chr = 'x';
-       symb = '8';
+       chr = "x";
+       symb = "8";
    }
-   if (GpioDataRegs.GPADAT.bit.GPIO6 == 0)         //row 6
+   if (GpioDataRegs.GPADAT.bit.GPIO27 == 0)         //row 6
    {
-       chr = 'z';
-       symb = '7';
+       chr = "z";
+       symb = "7";
    }
-   if (GpioDataRegs.GPADAT.bit.GPIO7 == 0)         //row 7
+   if (GpioDataRegs.GPADAT.bit.GPIO28 == 0)         //row 7
    {
        shift = 1;
        shl = 1;
    }
-   GpioCtrlRegs.GPADIR.bit.GPIO9 = 0;   // GPIO9 = input
+   GpioCtrlRegs.GPADIR.bit.GPIO30 = 0;   // GPIO30 = input
    GpioCtrlRegs.GPADIR.bit.GPIO10 = 1;   // GPIO10 = output
    GpioDataRegs.GPADATPUD.bit.GPIO10 = 1;   // set col 3 low
 
-   if (GpioDataRegs.GPADAT.bit.GPIO1 == 0)         //row 1
+   if (GpioDataRegs.GPADAT.bit.GPIO13 == 0)         //row 1
       {
-          chr = 'r';
-          symb = '3';
+          chr = "r";
+          symb = "3";
       }
-      if (GpioDataRegs.GPADAT.bit.GPIO2 == 0)         //row 2
+      if (GpioDataRegs.GPADAT.bit.GPIO14 == 0)         //row 2
       {
-          chr = 'g';
-          symb = '/';
+          chr = "g";
+          symb = "/";
       }
-      if (GpioDataRegs.GPADAT.bit.GPIO3 == 0)         //row 3
+      if (GpioDataRegs.GPADAT.bit.GPIO15 == 0)         //row 3
       {
-          chr = 't';
-          symb = '(';
+          chr = "t";
+          symb = "(";
       }
-      if (GpioDataRegs.GPADAT.bit.GPIO4 == 0)         //row 4
+      if (GpioDataRegs.GPADAT.bit.GPIO25 == 0)         //row 4
       {
           shift = 1;
           shr = 1;
       }
-      if (GpioDataRegs.GPADAT.bit.GPIO5 == 0)         //row 5
+      if (GpioDataRegs.GPADAT.bit.GPIO26 == 0)         //row 5
       {
-          chr = 'v';
-          symb = '?';
+          chr = "v";
+          symb = "?";
       }
-      if (GpioDataRegs.GPADAT.bit.GPIO6 == 0)         //row 6
+      if (GpioDataRegs.GPADAT.bit.GPIO27 == 0)         //row 6
       {
-          chr = 'c';
-          symb = '9';
+          chr = "c";
+          symb = "9";
       }
-      if (GpioDataRegs.GPADAT.bit.GPIO7 == 0)         //row 7
+      if (GpioDataRegs.GPADAT.bit.GPIO28 == 0)         //row 7
       {
-          chr = 'f';
-          symb = '6';
+          chr = "f";
+          symb = "6";
       }
       GpioCtrlRegs.GPADIR.bit.GPIO10 = 0;   // GPIO10 = input
       GpioCtrlRegs.GPADIR.bit.GPIO11 = 1;   // GPIO11 = output
       GpioDataRegs.GPADATPUD.bit.GPIO11 = 1;   // set col 4 low
 
-     if (GpioDataRegs.GPADAT.bit.GPIO1 == 0)         //row 1
+     if (GpioDataRegs.GPADAT.bit.GPIO13 == 0)         //row 1
      {
-         chr = 'u';
-         symb = '_';
+         chr = "u";
+         symb = "_";
      }
-     if (GpioDataRegs.GPADAT.bit.GPIO2 == 0)         //row 2
+     if (GpioDataRegs.GPADAT.bit.GPIO14 == 0)         //row 2
      {
-         chr = 'h';
-         symb = ':';
+         chr = "h";
+         symb = ":";
      }
-     if (GpioDataRegs.GPADAT.bit.GPIO3 == 0)         //row 3
+     if (GpioDataRegs.GPADAT.bit.GPIO15 == 0)         //row 3
      {
-         chr = 'y';
-         symb = ')';
+         chr = "y";
+         symb = ")";
      }
-     if (GpioDataRegs.GPADAT.bit.GPIO4 == 0)         //row 4
+     if (GpioDataRegs.GPADAT.bit.GPIO25 == 0)         //row 4
      {
          ret = 1;
      }
-     if (GpioDataRegs.GPADAT.bit.GPIO5 == 0)         //row 5
+     if (GpioDataRegs.GPADAT.bit.GPIO26 == 0)         //row 5
      {
-         chr = 'b';
-         symb = '!';
+         chr = "b";
+         symb = "!";
      }
-     if (GpioDataRegs.GPADAT.bit.GPIO6 == 0)         //row 6
+     if (GpioDataRegs.GPADAT.bit.GPIO27 == 0)         //row 6
      {
-         chr = 'n';
-         symb = ',';
+         chr = "n";
+         symb = ",";
      }
-     if (GpioDataRegs.GPADAT.bit.GPIO7 == 0)         //row 7
+     if (GpioDataRegs.GPADAT.bit.GPIO28 == 0)         //row 7
      {
-         chr = 'j';
-         symb = ';';
+         chr = "j";
+         symb = ";";
      }
      GpioCtrlRegs.GPADIR.bit.GPIO11 = 0;   // GPIO11 = input
      GpioCtrlRegs.GPADIR.bit.GPIO12 = 1;   // GPIO12 = output
      GpioDataRegs.GPADATPUD.bit.GPIO12 = 1;   // set col 5 low
 
-     if (GpioDataRegs.GPADAT.bit.GPIO1 == 0)         //row 1
-        {
-            chr = 'o';
-            symb = '+';
-        }
-        if (GpioDataRegs.GPADAT.bit.GPIO2 == 0)         //row 2
-        {
-            chr = 'l';
-            symb = '"';
-        }
-        if (GpioDataRegs.GPADAT.bit.GPIO3 == 0)         //row 3
-        {
-            chr = 'i';
-            symb = '-';
-        }
-        if (GpioDataRegs.GPADAT.bit.GPIO4 == 0)         //row 4
-        {
-            backspace = 1;
-        }
-        if (GpioDataRegs.GPADAT.bit.GPIO5 == 0)         //row 5
-        {
-            chr = '$';
-            symb = '`';
-        }
-        if (GpioDataRegs.GPADAT.bit.GPIO6 == 0)         //row 6
-        {
-            chr = 'M';
-            symb = '.';
-        }
-        if (GpioDataRegs.GPADAT.bit.GPIO7 == 0)         //row 7
-        {
-            chr = 'k';
-            symb = '\';
-        }
-        GpioCtrlRegs.GPADIR.bit.GPIO12 = 0;   // GPIO12 = input
+    if (GpioDataRegs.GPADAT.bit.GPIO13 == 0)         //row 1
+    {
+        chr = "o";
+        symb = "+";
+    }
+    if (GpioDataRegs.GPADAT.bit.GPIO14 == 0)         //row 2
+    {
+        chr = "l";
+        symb = "\"";
+    }
+    if (GpioDataRegs.GPADAT.bit.GPIO15 == 0)         //row 3
+    {
+        chr = "i";
+        symb = "-";
+    }
+    if (GpioDataRegs.GPADAT.bit.GPIO25 == 0)         //row 4
+    {
+        backspace = 1;
+    }
+    if (GpioDataRegs.GPADAT.bit.GPIO26 == 0)         //row 5
+    {
+        chr = "$";
+        symb = "";
+    }
+    if (GpioDataRegs.GPADAT.bit.GPIO27 == 0)         //row 6
+    {
+        chr = "M";
+        symb = ".";
+    }
+    if (GpioDataRegs.GPADAT.bit.GPIO28 == 0)         //row 7
+    {
+        chr = "k";
+        symb = "\'";
+    }
+    GpioCtrlRegs.GPADIR.bit.GPIO12 = 0;   // GPIO12 = input
 
+
+    if (alt)
+        return "";          //idk what alt key is supposed to be used for so rn it does nothing
     if (backspace)
-        return 'BS';
+        return "backspace";
     if (ret)
-        return '\n';
+        return "\n";
+    if (shl && shr)
+    {
+        capslock = !capslock;
+        return "";
+    }
+    if (capslock)
+        shift = 1;
 
     if (shift)
-        chr = chr + 42      // i cant remember the number to get to capital
+        chr = chr - 32
 
     if (sym)
         return symb;
@@ -239,3 +250,40 @@ char key_scan(void)
         return chr;
 
 }
+
+void update_message(const char* input)
+{
+    if (input == "")
+        return;
+
+    //find where the first null character in message is
+    int index = 160;
+    for (int i = 0; i< sizeof(message)/sizeof(char); ++i)
+    {
+        if (message[i] == '\0')
+        {
+            index = i;
+            break;
+        }
+    }
+
+
+    if (input == "backspace")
+    {
+        if (index == 0)
+        {
+            return;
+        }
+        else
+        {
+            message[index-1] = '\0';
+            return;
+        }
+    }
+
+    if (index != 160)   //if character limit is full, do nothing
+    {
+        message[index] = input;
+    }
+}
+

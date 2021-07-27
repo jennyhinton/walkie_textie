@@ -57,52 +57,52 @@ void keypad_init (void)
 
      */
 
-    // Make gpio 1 an input for row 1
-    GpioCtrlRegs.GPAPUD.bit.GPIO1 = 0;   // Enable pullup on GPIO1
-    GpioCtrlRegs.GPAMUX1.bit.GPIO1 = 0;  // GPIO1 = GPIO
-    GpioCtrlRegs.GPADIR.bit.GPIO1 = 0;   // GPIO1 = input
+    // Make gpio 13 an input for row 1
+    GpioCtrlRegs.GPAPUD.bit.GPIO13 = 0;   // Enable pullup on GPIO13
+    GpioCtrlRegs.GPAMUX1.bit.GPIO13 = 0;  // GPIO13 = GPIO
+    GpioCtrlRegs.GPADIR.bit.GPIO13 = 0;   // GPIO13 = input
 
-    // Make gpio 2 an input for row 2
-    GpioCtrlRegs.GPAPUD.bit.GPIO2 = 0;   // Enable pullup on GPIO2
-    GpioCtrlRegs.GPAMUX1.bit.GPIO2 = 0;  // GPIO2 = GPIO
-    GpioCtrlRegs.GPADIR.bit.GPIO2 = 0;   // GPIO2 = input
+    // Make gpio 14 an input for row 2
+    GpioCtrlRegs.GPAPUD.bit.GPIO14 = 0;   // Enable pullup on GPIO14
+    GpioCtrlRegs.GPAMUX1.bit.GPIO14 = 0;  // GPIO14 = GPIO
+    GpioCtrlRegs.GPADIR.bit.GPIO14 = 0;   // GPIO14 = input
 
-    // Make gpio 3 input for row 3 ... same comments as above
-    GpioCtrlRegs.GPAPUD.bit.GPIO3 = 0;
-    GpioCtrlRegs.GPAMUX1.bit.GPIO3 = 0;
-    GpioCtrlRegs.GPADIR.bit.GPIO3 = 0;
+    // Make gpio 15 input for row 3 ... same comments as above
+    GpioCtrlRegs.GPAPUD.bit.GPIO15 = 0;
+    GpioCtrlRegs.GPAMUX1.bit.GPIO15 = 0;
+    GpioCtrlRegs.GPADIR.bit.GPIO15 = 0;
 
     //typedef GpioCtrlRegs.GPADIR.bit.GPIO3 row3;
 
-    // Make gpio 4 input for row 4
-    GpioCtrlRegs.GPAPUD.bit.GPIO4 = 0;
-    GpioCtrlRegs.GPAMUX1.bit.GPIO4 = 0;
-    GpioCtrlRegs.GPADIR.bit.GPIO4 = 0;
+    // Make gpio 25 input for row 4
+    GpioCtrlRegs.GPAPUD.bit.GPIO25 = 0;
+    GpioCtrlRegs.GPAMUX2.bit.GPIO25 = 0;
+    GpioCtrlRegs.GPADIR.bit.GPIO25 = 0;
 
-    // Make gpio 5 input for row 5
-    GpioCtrlRegs.GPAPUD.bit.GPIO5 = 0;
-    GpioCtrlRegs.GPAMUX1.bit.GPIO5 = 0;
-    GpioCtrlRegs.GPADIR.bit.GPIO5 = 0;
+    // Make gpio 26 input for row 5
+    GpioCtrlRegs.GPAPUD.bit.GPIO26 = 0;
+    GpioCtrlRegs.GPAMUX2.bit.GPIO26 = 0;
+    GpioCtrlRegs.GPADIR.bit.GPIO26 = 0;
 
-    // Make gpio 6 input for row 6
-    GpioCtrlRegs.GPAPUD.bit.GPIO6 = 0;
-    GpioCtrlRegs.GPAMUX1.bit.GPIO6 = 0;
-    GpioCtrlRegs.GPADIR.bit.GPIO6 = 0;
+    // Make gpio 27 input for row 6
+    GpioCtrlRegs.GPAPUD.bit.GPIO27 = 0;
+    GpioCtrlRegs.GPAMUX2.bit.GPIO27 = 0;
+    GpioCtrlRegs.GPADIR.bit.GPIO27 = 0;
 
-    // Make gpio 7 input for row 7
-    GpioCtrlRegs.GPAPUD.bit.GPIO7 = 0;
-    GpioCtrlRegs.GPAMUX1.bit.GPIO7 = 0;
-    GpioCtrlRegs.GPADIR.bit.GPIO7 = 0;
+    // Make gpio 28 input for row 7
+    GpioCtrlRegs.GPAPUD.bit.GPIO28 = 0;
+    GpioCtrlRegs.GPAMUX2.bit.GPIO28 = 0;
+    GpioCtrlRegs.GPADIR.bit.GPIO28 = 0;
 
-    // Make gpio 8 highZ for col 1
-    GpioCtrlRegs.GPAPUD.bit.GPIO8 = 1;   // disable pullup on GPIO8
-    GpioCtrlRegs.GPAMUX1.bit.GPIO8 = 0;  // GPIO8 = GPIO
-    GpioCtrlRegs.GPADIR.bit.GPIO8 = 0;   // GPIO8 = input
+    // Make gpio 29 highZ for col 1
+    GpioCtrlRegs.GPAPUD.bit.GPIO29 = 1;   // disable pullup on GPIO8
+    GpioCtrlRegs.GPAMUX2.bit.GPIO29 = 0;  // GPIO29 = GPIO
+    GpioCtrlRegs.GPADIR.bit.GPIO29 = 0;   // GPIO8 = input
 
-    // Make gpio 9 highZ for col 2
-    GpioCtrlRegs.GPAPUD.bit.GPIO9 = 1;
-    GpioCtrlRegs.GPAMUX1.bit.GPIO9 = 0;
-    GpioCtrlRegs.GPADIR.bit.GPIO9 = 0;
+    // Make gpio 30 highZ for col 2
+    GpioCtrlRegs.GPAPUD.bit.GPIO30 = 1;
+    GpioCtrlRegs.GPAMUX2.bit.GPIO30 = 0;
+    GpioCtrlRegs.GPADIR.bit.GPIO30 = 0;
 
     // Make gpio 10 highZ for col 3
     GpioCtrlRegs.GPAPUD.bit.GPIO10 = 1;
@@ -122,50 +122,50 @@ void keypad_init (void)
 
 void button_init (void)
 {
-    // Make gpio 13 input for PTT button
-     GpioCtrlRegs.GPAPUD.bit.GPIO13 = 0;   // Enable pullup on GPIO13
-     GpioCtrlRegs.GPAMUX1.bit.GPIO13 = 0;  // GPIO13 = GPIO
-     GpioCtrlRegs.GPADIR.bit.GPIO13 = 0;   // GPIO13 = input
+    // Make gpio 1 input for Power button
+    GpioCtrlRegs.GPAPUD.bit.GPIO1 = 0;   // Enable pullup on GPIO1
+    GpioCtrlRegs.GPAMUX1.bit.GPIO1 = 0;  // GPIO1 = GPIO
+    GpioCtrlRegs.GPADIR.bit.GPIO1 = 0;   // GPIO1 = input
 
-    // Make gpio 14 input for PTT button
-     GpioCtrlRegs.GPAPUD.bit.GPIO14 = 0;   // Enable pullup on GPIO14
-     GpioCtrlRegs.GPAMUX1.bit.GPIO14 = 0;  // GPIO14 = GPIO
-     GpioCtrlRegs.GPADIR.bit.GPIO14 = 0;   // GPIO14 = input
+    // Make gpio 2 input for PTT button
+     GpioCtrlRegs.GPAPUD.bit.GPIO2 = 0;   // Enable pullup on GPIO2
+     GpioCtrlRegs.GPAMUX1.bit.GPIO2 = 0;  // GPIO2 = GPIO
+     GpioCtrlRegs.GPADIR.bit.GPIO2 = 0;   // GPIO2 = input
 
-    // Make gpio 15 input for up button ... same comments as above
-    GpioCtrlRegs.GPAPUD.bit.GPIO15 = 0;
-    GpioCtrlRegs.GPAMUX1.bit.GPIO15 = 0;
-    GpioCtrlRegs.GPADIR.bit.GPIO15 = 0;
+    // Make gpio 3 input for up button ... same comments as above
+     GpioCtrlRegs.GPAPUD.bit.GPIO3 = 0;
+     GpioCtrlRegs.GPAMUX1.bit.GPIO3 = 0;
+     GpioCtrlRegs.GPADIR.bit.GPIO3 = 0;
 
-    // Make gpio 25 input for down button
-    GpioCtrlRegs.GPAPUD.bit.GPIO25 = 0;
-    GpioCtrlRegs.GPAMUX2.bit.GPIO25 = 0;
-    GpioCtrlRegs.GPADIR.bit.GPIO25 = 0;
+    // Make gpio 4 input for down button
+    GpioCtrlRegs.GPAPUD.bit.GPIO4 = 0;
+    GpioCtrlRegs.GPAMUX1.bit.GPIO4 = 0;
+    GpioCtrlRegs.GPADIR.bit.GPIO4 = 0;
 
-    // Make gpio 26 input for left button
-    GpioCtrlRegs.GPAPUD.bit.GPIO26 = 0;
-    GpioCtrlRegs.GPAMUX2.bit.GPIO26 = 0;
-    GpioCtrlRegs.GPADIR.bit.GPIO26 = 0;
+    // Make gpio 5 input for left button
+    GpioCtrlRegs.GPAPUD.bit.GPIO5 = 0;
+    GpioCtrlRegs.GPAMUX1.bit.GPIO5 = 0;
+    GpioCtrlRegs.GPADIR.bit.GPIO5 = 0;
 
-    // Make gpio 27 input for right button
-    GpioCtrlRegs.GPAPUD.bit.GPIO27 = 0;
-    GpioCtrlRegs.GPAMUX2.bit.GPIO27 = 0;
-    GpioCtrlRegs.GPADIR.bit.GPIO27 = 0;
+    // Make gpio 6 input for right button
+    GpioCtrlRegs.GPAPUD.bit.GPIO6 = 0;
+    GpioCtrlRegs.GPAMUX1.bit.GPIO6 = 0;
+    GpioCtrlRegs.GPADIR.bit.GPIO6 = 0;
 
-    // Make gpio 28 input for center button
-    GpioCtrlRegs.GPAPUD.bit.GPIO28 = 0;
-    GpioCtrlRegs.GPAMUX2.bit.GPIO28 = 0;
-    GpioCtrlRegs.GPADIR.bit.GPIO28 = 0;
+    // Make gpio 7 input for center button
+    GpioCtrlRegs.GPAPUD.bit.GPIO7 = 0;
+    GpioCtrlRegs.GPAMUX1.bit.GPIO7 = 0;
+    GpioCtrlRegs.GPADIR.bit.GPIO7 = 0;
 
-    // Make gpio 29 input for volume up button
-    GpioCtrlRegs.GPAPUD.bit.GPIO29 = 0;
-    GpioCtrlRegs.GPAMUX2.bit.GPIO29 = 0;
-    GpioCtrlRegs.GPADIR.bit.GPIO29 = 0;
+    // Make gpio 8 input for volume up button
+    GpioCtrlRegs.GPAPUD.bit.GPIO8 = 0;
+    GpioCtrlRegs.GPAMUX1.bit.GPIO8 = 0;
+    GpioCtrlRegs.GPADIR.bit.GPIO8 = 0;
 
-    // Make gpio 30 input for volume down button
-    GpioCtrlRegs.GPAPUD.bit.GPIO30 = 0;
-    GpioCtrlRegs.GPAMUX2.bit.GPIO30 = 0;
-    GpioCtrlRegs.GPADIR.bit.GPIO30 = 0;
+    // Make gpio 9 input for volume down button
+    GpioCtrlRegs.GPAPUD.bit.GPIO9 = 0;
+    GpioCtrlRegs.GPAMUX1.bit.GPIO9 = 0;
+    GpioCtrlRegs.GPADIR.bit.GPIO9 = 0;
 }
 
 }

@@ -8,6 +8,9 @@
 #ifndef KEYPAD_H_
 #define KEYPAD_H_
 
-char key_scan(void);
+bool capslock = 0;
+char message[160]{'\0'}; // {'\0'} initialized the array with a null value
+
+const char* key_scan(void);
 
 #endif /* KEYPAD_H_ */
