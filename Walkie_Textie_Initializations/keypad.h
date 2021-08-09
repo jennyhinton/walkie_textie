@@ -2,7 +2,7 @@
  * keypad.h
  *
  *  Created on: Jul 14, 2021
- *      Author: hinje
+ *      Author: Jenny
  */
 
 #ifndef KEYPAD_H_

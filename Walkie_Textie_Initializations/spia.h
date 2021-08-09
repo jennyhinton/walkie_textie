@@ -2,7 +2,7 @@
  * spia.h
  *
  *  Created on: Jul 14, 2021
- *      Author: hinje
+ *      Author: Jenny
  */
 
 #ifndef SPIA_H_
