@@ -2,10 +2,11 @@
  * spia.c
  *
  *  Created on: Jul 14, 2021
- *      Author: hinje
+ *      Author: Jenny
  */
 
-#include "DSP280x_Device.h"
+#include "v170/DSP280x_headers/include/DSP280x_Device.h"     // DSP280x Headerfile Include File
+#include "spia.h"
 
 void SPIa_init(void)    //initialize SPIa for screen. No interrupt used
 {
@@ -68,7 +69,7 @@ void spi_init()
 
 void spi_xmit(Uint16 a)
 {
-    SpiaRegs.SPITXBUF=a;
+    SpiaRegs.SPITXBUF = a; // this may or may not be right
 }
 
 void spi_fifo_init()

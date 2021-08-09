@@ -10,8 +10,11 @@
 
 void screen_init (void)
 {
+       Uint16 rdata;  // received data
+
     // Step 5. User specific code:
-       const char *sdata[13];
+       // Map these codes into integer values (0: "40", 1: "A1" ...)
+       Uint16 sdata[13];
        sdata[0] = "40";       //display start line at 0
        sdata[1] = "A1";       //set SEG to bottom view
        sdata[2] = "C0";       //set normal direction com0-com63
@@ -26,7 +29,8 @@ void screen_init (void)
        sdata[11] = "90";
        sdata[12] = "AF";       //set display on
 
-       for(int i = 0; i<sizeof(sdata)/sizeof(char) ; i++)
+       int i;
+       for(i = 0; i < 13; i++)
        {
            // Transmit data
            spi_xmit(sdata[i]);
@@ -166,6 +170,4 @@ void button_init (void)
     GpioCtrlRegs.GPAPUD.bit.GPIO9 = 0;
     GpioCtrlRegs.GPAMUX1.bit.GPIO9 = 0;
     GpioCtrlRegs.GPADIR.bit.GPIO9 = 0;
-}
-
 }
